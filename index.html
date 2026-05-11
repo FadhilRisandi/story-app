@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#8f55e8" />
+    <link rel="shortcut icon" href="/assets/logo-story-CEDAKfOe.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <title>Storyyy</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="module" crossorigin src="/assets/index-CuBim1Pb.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-_1i4Edn4.css">
+  </head>
+  <body class="min-h-screen">
+    <header
+      class="border-b border-border/80 py-4 fixed top-0 left-0 right-0 w-full bg-secondary-background/85 backdrop-blur z-9999"
+    >
+      <nav class="app-container app-shell flex items-center justify-between">
+        <a
+          href="#/"
+          class="flex items-center gap-2 font-bold text-xl hover:text-main"
+          aria-label="Storyyy homepage"
+        >
+          <img
+            src="/images/logo-story.png"
+            alt="Storyyy"
+            class="h-9 w-9 rounded-base object-cover"
+          />
+          <span>Storyyy</span>
+        </a>
+        <button
+          id="skip-to-content-button"
+          tabindex="0"
+          class="btn btn-primary absolute -top-20 -left-20 focus-visible:top-0 focus-visible:left-0"
+        >
+          Skip To Content
+        </button>
+        <button
+          id="hamburger-button"
+          class="btn btn-secondary block md:hidden!"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div
+          id="mobile-navigation-drawer"
+          aria-hidden="true"
+          class="max-w-sm p-4 flex flex-col gap-5 w-full md:hidden h-screen bg-secondary-background absolute top-0 transition-all -right-100 shadow-shadow border-l border-border"
+        >
+          <button
+            id="mobile-drawer-close"
+            title="Tutup Drawer"
+            class="btn btn-secondary w-fit"
+          >
+            X
+          </button>
+          <div id="mobile-navigation-drawer-content"></div>
+        </div>
+        <div
+          id="navigation-drawer"
+          class="hidden md:flex items-center gap-2"
+        ></div>
+      </nav>
+    </header>
+
+    <main id="main-content" class="main-content" tabindex="-1"></main>
+    <footer class="border-t border-border/80 py-6 bg-secondary-background/70">
+      <p class="text-center text-sm text-gray-500">
+        &copy; Made by Fadhil Risandi
+      </p>
+    </footer>
+  </body>
+</html>
