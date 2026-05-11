@@ -276,7 +276,7 @@ var No=l=>{throw TypeError(l)};var ln=(l,a,r)=>a.has(l)||No("Cannot "+r);var _=(
           <aside class="card p-6 sm:p-8 justify-between">
             <div class="flex flex-col gap-5">
               <img
-                src="/images/logo-story.png"
+                src="/story-app/images/logo-story.png"
                 alt="Storyyy"
                 class="h-20 w-20 rounded-base border-2 border-border object-cover bg-white"
               />
