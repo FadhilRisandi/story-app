@@ -11,7 +11,18 @@ export async function registerServiceWorker() {
   }
 
   try {
-    return await navigator.serviceWorker.register("/sw.js");
+    const serviceWorkerUrl = new URL(
+      `${import.meta.env.BASE_URL}sw.js`,
+      window.location.href,
+    );
+    const serviceWorkerScope = new URL(
+      import.meta.env.BASE_URL,
+      window.location.href,
+    );
+
+    return await navigator.serviceWorker.register(serviceWorkerUrl, {
+      scope: serviceWorkerScope.pathname,
+    });
   } catch (error) {
     console.error("Service worker registration failed:", error);
     return null;

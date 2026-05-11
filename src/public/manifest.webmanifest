@@ -2,27 +2,27 @@
   "name": "Storyyy",
   "short_name": "Storyyy",
   "description": "Tempat untuk membagikan cerita, kenangan, dan pengalaman menarik dalam satu aplikasi.",
-  "start_url": "/#/",
-  "scope": "/",
+  "start_url": "./#/",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#eee2fb",
   "theme_color": "#8f55e8",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/images/icon-192.png",
+      "src": "images/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/images/logo-story.png",
+      "src": "images/logo-story.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/images/logo-story.png",
+      "src": "images/logo-story.png",
       "sizes": "1254x1254",
       "type": "image/png",
       "purpose": "any"
@@ -30,14 +30,14 @@
   ],
   "screenshots": [
     {
-      "src": "/images/screenshot-narrow.png",
+      "src": "images/screenshot-narrow.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Storyyy mobile home"
     },
     {
-      "src": "/images/screenshot-wide.png",
+      "src": "images/screenshot-wide.png",
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
@@ -49,10 +49,10 @@
       "name": "Add Story",
       "short_name": "Add",
       "description": "Create a new story",
-      "url": "/#/add-story",
+      "url": "./#/add-story",
       "icons": [
         {
-          "src": "/images/logo-story.png",
+          "src": "images/logo-story.png",
           "sizes": "512x512",
           "type": "image/png"
         }

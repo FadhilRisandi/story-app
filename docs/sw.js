@@ -1,15 +1,17 @@
-const CACHE_NAME = "storyyy-shell-v2";
-const RUNTIME_CACHE = "storyyy-runtime-v2";
+const CACHE_NAME = "storyyy-shell-v3";
+const RUNTIME_CACHE = "storyyy-runtime-v3";
+const BASE_PATH = new URL(self.registration.scope).pathname;
+const withBasePath = (path) => `${BASE_PATH}${path}`.replace(/\/{2,}/g, "/");
 const APP_SHELL = [
-  "/",
-  "/index.html",
-  "/manifest.webmanifest",
-  "/favicon.png",
-  "/images/icon-192.png",
-  "/images/logo.png",
-  "/images/logo-story.png",
-  "/images/screenshot-narrow.png",
-  "/images/screenshot-wide.png",
+  withBasePath(""),
+  withBasePath("index.html"),
+  withBasePath("manifest.webmanifest"),
+  withBasePath("favicon.png"),
+  withBasePath("images/icon-192.png"),
+  withBasePath("images/logo.png"),
+  withBasePath("images/logo-story.png"),
+  withBasePath("images/screenshot-narrow.png"),
+  withBasePath("images/screenshot-wide.png"),
 ];
 
 self.addEventListener("install", (event) => {
@@ -40,7 +42,7 @@ self.addEventListener("fetch", (event) => {
   const isSameOrigin = url.origin === self.location.origin;
 
   if (request.mode === "navigate") {
-    event.respondWith(networkFirst(request, "/index.html"));
+    event.respondWith(networkFirst(request, withBasePath("index.html")));
     return;
   }
 
@@ -63,9 +65,9 @@ self.addEventListener("push", (event) => {
     title: "Storyyy",
     options: {
       body: "Ada story baru untuk dibaca.",
-      icon: "/images/logo.png",
-      badge: "/images/logo.png",
-      data: { url: "/#/" },
+      icon: withBasePath("images/logo.png"),
+      badge: withBasePath("images/logo.png"),
+      data: { url: `${BASE_PATH}#/` },
     },
   };
 
@@ -77,13 +79,13 @@ self.addEventListener("push", (event) => {
         options: {
           ...payload.options,
           ...(data.options || {}),
-          icon: data.options?.icon || "/images/logo.png",
-          badge: data.options?.badge || "/images/logo.png",
+          icon: data.options?.icon || withBasePath("images/logo.png"),
+          badge: data.options?.badge || withBasePath("images/logo.png"),
           data: {
             ...(data.options?.data || {}),
             url: data.options?.data?.id
-              ? `/#/story/${data.options.data.id}`
-              : "/#/",
+              ? `${BASE_PATH}#/story/${data.options.data.id}`
+              : `${BASE_PATH}#/`,
           },
           actions: [
             {
@@ -106,7 +108,9 @@ self.addEventListener("notificationclick", (event) => {
 
   const targetUrl =
     event.notification.data?.url ||
-    (event.notification.data?.id ? `/#/story/${event.notification.data.id}` : "/#/");
+    (event.notification.data?.id
+      ? `${BASE_PATH}#/story/${event.notification.data.id}`
+      : `${BASE_PATH}#/`);
 
   event.waitUntil(
     clients
