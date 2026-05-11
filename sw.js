@@ -72,13 +72,16 @@ self.addEventListener("push", (event) => {
   };
 
   if (event.data) {
+    const textPayload = event.data.text();
+
     try {
-      const data = event.data.json();
+      const data = JSON.parse(textPayload);
       payload = {
         title: data.title || payload.title,
         options: {
           ...payload.options,
           ...(data.options || {}),
+          body: data.options?.body || data.body || payload.options.body,
           icon: data.options?.icon || withBasePath("images/logo.png"),
           badge: data.options?.badge || withBasePath("images/logo.png"),
           data: {
@@ -96,7 +99,13 @@ self.addEventListener("push", (event) => {
         },
       };
     } catch (error) {
-      console.error("Invalid push payload:", error);
+      payload = {
+        ...payload,
+        options: {
+          ...payload.options,
+          body: textPayload || payload.options.body,
+        },
+      };
     }
   }
 

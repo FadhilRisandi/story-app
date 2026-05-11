@@ -191,7 +191,11 @@ var No=l=>{throw TypeError(l)};var ln=(l,a,r)=>a.has(l)||No("Cannot "+r);var _=(
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-6 items-start">
           <article class="card overflow-hidden gap-0">
-            <img id="photo-story" class="w-full aspect-[16/10] object-cover bg-white" />
+            <img
+              id="photo-story"
+              class="w-full aspect-[16/10] object-cover bg-white"
+              alt="Story photo"
+            />
             <div class="p-6 sm:p-8 flex flex-col gap-5">
               <p id="description-story" class="text-lg leading-8 text-muted"></p>
               <div class="flex flex-wrap gap-3">
