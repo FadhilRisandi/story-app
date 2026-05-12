@@ -1,5 +1,5 @@
-const CACHE_NAME = "storyyy-shell-v3";
-const RUNTIME_CACHE = "storyyy-runtime-v3";
+const CACHE_NAME = "storyyy-shell-v4";
+const RUNTIME_CACHE = "storyyy-runtime-v4";
 const BASE_PATH = new URL(self.registration.scope).pathname;
 const withBasePath = (path) => `${BASE_PATH}${path}`.replace(/\/{2,}/g, "/");
 const APP_SHELL = [
@@ -72,19 +72,32 @@ self.addEventListener("push", (event) => {
   };
 
   if (event.data) {
+    const textPayload = event.data.text();
+
     try {
-      const data = event.data.json();
+      const data = JSON.parse(textPayload);
+      const notification = data?.notification || data?.data || data || {};
+      const notificationOptions = notification.options || {};
+      const notificationData = notificationOptions.data || notification.data || {};
+      const storyId = notificationData.id || notification.id;
+
       payload = {
-        title: data.title || payload.title,
+        title: notification.title || payload.title,
         options: {
           ...payload.options,
-          ...(data.options || {}),
-          icon: data.options?.icon || withBasePath("images/logo.png"),
-          badge: data.options?.badge || withBasePath("images/logo.png"),
+          ...notificationOptions,
+          body:
+            notificationOptions.body ||
+            notification.body ||
+            notification.message ||
+            notification.payload ||
+            payload.options.body,
+          icon: notificationOptions.icon || withBasePath("images/logo.png"),
+          badge: notificationOptions.badge || withBasePath("images/logo.png"),
           data: {
-            ...(data.options?.data || {}),
-            url: data.options?.data?.id
-              ? `${BASE_PATH}#/story/${data.options.data.id}`
+            ...notificationData,
+            url: storyId
+              ? `${BASE_PATH}#/story/${storyId}`
               : `${BASE_PATH}#/`,
           },
           actions: [
@@ -96,7 +109,13 @@ self.addEventListener("push", (event) => {
         },
       };
     } catch (error) {
-      console.error("Invalid push payload:", error);
+      payload = {
+        ...payload,
+        options: {
+          ...payload.options,
+          body: textPayload || payload.options.body,
+        },
+      };
     }
   }
 

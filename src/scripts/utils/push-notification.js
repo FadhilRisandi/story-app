@@ -20,9 +20,12 @@ export async function registerServiceWorker() {
       window.location.href,
     );
 
-    return await navigator.serviceWorker.register(serviceWorkerUrl, {
+    const registration = await navigator.serviceWorker.register(serviceWorkerUrl, {
       scope: serviceWorkerScope.pathname,
     });
+
+    await registration.update();
+    return registration;
   } catch (error) {
     console.error("Service worker registration failed:", error);
     return null;
